@@ -1,0 +1,5 @@
+export { HomePage } from './HomePage'
+export { TasksPage } from './TasksPage'
+export { AuthPage } from './AuthPage'
+export { RegisterPage } from './RegisterPage'
+export { NewTaskPage } from './NewTaskPage'
