@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState, createContext } from "react";
+import { getUserByToken } from "../services/user.service";
 
 const UserContext = createContext();
 
@@ -6,26 +7,22 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const user = localStorage.getItem("token");
-    if (user) {
-      setUser(JSON.parse(user));
+    const token = localStorage.getItem("token");
+    if (token) {
+      getUserByToken({token})  
+        .then((user) => {
+          if(!user) return 
+
+          setUser(user)
+        })
     }
   }, []);
 
-  const login = (user) => {
-    localStorage.setItem("token", JSON.stringify(user));
-    setUser(user);
-  };
-
-  const logout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
-  };
+ 
 
   const value = {
     user,
-    login,
-    logout,
+    setUser
   };
 
   return (
