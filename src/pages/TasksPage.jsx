@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useEffect, useState } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 export const TasksPage = ({ io }) => {
-
   // get id from url with useParams
   const { proyectId } = useParams()
-  
-  const [ tasks, setTasks ] = useState([])
-  
+
+  const [tasks, setTasks] = useState([])
+
   useEffect(() => {
-    if(!proyectId) return
+    if (!proyectId) return
     fetch(`http://localhost:4000/api/tasks/${proyectId}`)
       .then(res => res.json())
       .then(data => setTasks(data))

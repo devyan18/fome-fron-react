@@ -1,29 +1,40 @@
-import { useContext, useEffect, useState, createContext } from "react";
-import { getUserByToken } from "../services/user.service";
+import { useContext, useEffect, useState, createContext } from 'react'
+import { getUserByToken } from '../services/user.service'
 
-const UserContext = createContext();
+const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
+
+  const findUser = async () => {
+    const token = localStorage.getItem('token')
+
+    if (!token) return null
+
+    getUserByToken({ token })
+      .then((user) => {
+        if (!user) {
+          localStorage.removeItem('token')
+          localStorage.removeItem('user')
+          setUser(null)
+        }
+        setUser(user)
+      })
+  }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      getUserByToken({token})  
-        .then((user) => {
-          if(!user) return 
+    findUser()
+  }, [])
 
-          setUser(user)
-        })
-    }
-  }, []);
-
- 
+  useEffect(() => {
+    console.log(user)
+  }, [user])
 
   const value = {
     user,
-    setUser
-  };
+    setUser,
+    findUser
+  }
 
   return (
     <UserContext.Provider
@@ -31,8 +42,7 @@ export const UserProvider = ({ children }) => {
     >
       {children}
     </UserContext.Provider>
-  );
-
+  )
 }
 
 export const useUser = () => useContext(UserContext)

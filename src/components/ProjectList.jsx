@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react"
-import ProjectItem from "./ProjectItem"
+import { useEffect, useState } from 'react'
+import ProjectItem from './ProjectItem'
 
-const ProjectList = ({io}) => {
+const ProjectList = ({ io }) => {
   const [projects, setProjects] = useState([])
 
   const getProjects = () => {

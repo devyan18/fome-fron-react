@@ -1,4 +1,4 @@
-import { RegisterForm } from "../components/RegisterForm"
+import { RegisterForm } from '../components/RegisterForm'
 
 export const RegisterPage = () => {
   return (
@@ -7,4 +7,3 @@ export const RegisterPage = () => {
     </div>
   )
 }
- 

@@ -2,7 +2,7 @@ const ProjectItem = ({ projectId, name, creator, description }) => {
   return (
     <div className="card">
       <h5 className="card-header">
-        {name}        
+        {name}
       </h5>
       <div className="card-body">
         <h6>

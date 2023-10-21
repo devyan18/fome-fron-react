@@ -1,27 +1,26 @@
-import { useForm } from "../hooks/useForm";
-import { createUser } from "../services/user.service";
+import { useForm } from '../hooks/useForm'
+import { createUser } from '../services/user.service'
 
 export const RegisterForm = () => {
+  const [values, handleInputChange, reset] = useForm({
+    nickName: '_Maarin',
+    email: 'epache17@gmail.com',
+    password: '12345678sebbA'
+  })
 
-    const [values, handleInputChange, reset] = useForm({
-        nickName: '_Maarin',
-        email: 'epache17@gmail.com',
-        password: '12345678sebbA'
-    })
-
-const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
 
     console.log(values)
     const token = await createUser(values)
     if (!token) {
-        reset()
-        return
+      reset()
+      return
     }
 
     localStorage.setItem('token', token)
     reset()
-}
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -54,5 +53,5 @@ const handleSubmit = async (e) => {
       />
       <button type="submit">Send</button>
     </form>
-  );
-};
+  )
+}

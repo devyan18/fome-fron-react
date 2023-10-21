@@ -1,7 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const NewTaskPage = ({ io }) => {
-
   const { projectId } = useParams()
 
   const navigate = useNavigate()
@@ -16,7 +15,7 @@ export const NewTaskPage = ({ io }) => {
       },
       body: JSON.stringify({
         taskDescription: form.get('description').toString()
-      }),
+      })
     })
       .then(res => res.json())
       .then(data => {
