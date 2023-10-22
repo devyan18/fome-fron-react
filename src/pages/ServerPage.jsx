@@ -1,7 +1,9 @@
 import Layout from '../components/Layout'
 
-export const ServerPage = () => {
+const ServerPage = () => {
   return (
-    <Layout />
+     <Layout />
   )
 }
+
+export default ServerPage

@@ -1,6 +1,9 @@
+import { useUser } from '../providers/UserProvider'
 import '../styles/layout.css'
 
 const Layout = () => {
+  const { user } = useUser()
+
   return (
     <div className='layout'>
       <aside>
@@ -11,7 +14,8 @@ const Layout = () => {
         header
         </header>
         <main>
-        main
+          <p>{user?.nickName}</p>
+          <p>{user?.email}</p>
         </main>
       </div>
     </div>

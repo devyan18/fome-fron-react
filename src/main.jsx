@@ -2,10 +2,12 @@ import ReactDOM from 'react-dom/client'
 import socket from 'socket.io-client'
 
 import { BrowserRouter } from 'react-router-dom'
-import { RouterManager } from './router.jsx'
-import { UserProvider } from './providers/UserProvider.jsx'
+import RouterManager from './router'
+import UserProvider from './providers/UserProvider'
 
-const io = socket('http://localhost:4000')
+import { SERVER_URL } from './utilities/constants'
+
+const io = socket(SERVER_URL)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <UserProvider>

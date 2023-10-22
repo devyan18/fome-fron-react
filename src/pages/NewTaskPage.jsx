@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-export const NewTaskPage = ({ io }) => {
+const NewTaskPage = ({ io }) => {
   const { projectId } = useParams()
 
   const navigate = useNavigate()
@@ -34,3 +34,5 @@ export const NewTaskPage = ({ io }) => {
     </form>
   )
 }
+
+export default NewTaskPage

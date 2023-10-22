@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-export const TasksPage = ({ io }) => {
+const TasksPage = ({ io }) => {
   // get id from url with useParams
   const { proyectId } = useParams()
 
@@ -35,3 +35,5 @@ export const TasksPage = ({ io }) => {
       {JSON.stringify(tasks, null, 2)}</div>
   )
 }
+
+export default TasksPage

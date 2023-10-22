@@ -20,6 +20,7 @@ module.exports = {
     'react/prop-types': 'off',
     "react-refresh/only-export-components": "off",
     "react-hooks/rules-of-hooks": "off",
-    "react/no-children-prop": "off"
+    "react/no-children-prop": "off",
+    "import/export": "off"
   },
 }

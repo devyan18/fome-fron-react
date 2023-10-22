@@ -1,4 +1,4 @@
-export const CreateTaskForm = ({ io }) => {
+const CreateTaskForm = ({ io }) => {
   const handleCreateTask = (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
@@ -24,3 +24,5 @@ export const CreateTaskForm = ({ io }) => {
     </form>
   )
 }
+
+export default CreateTaskForm

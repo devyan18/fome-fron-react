@@ -3,7 +3,7 @@ import { Suspense, useEffect } from 'react'
 import { getUserByToken } from '../services/user.service'
 import { useUser } from '../providers/UserProvider'
 
-export const ProtectedRoute = () => {
+export const LoggedGuard = () => {
   const navigate = useNavigate()
 
   const { user, setUser } = useUser()
@@ -16,10 +16,10 @@ export const ProtectedRoute = () => {
     if (!token) navigate('/auth', { replace: true })
 
     getUserByToken({ token })
-      .then((user) => {
+      .then((res) => res.json())
+      .then(({ user }) => {
         if (!user) {
           localStorage.removeItem('token')
-          localStorage.removeItem('user')
           navigate('/auth', { replace: true })
         }
         setUser(user)

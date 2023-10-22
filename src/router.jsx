@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { HomePage, AuthPage, RegisterPage, ServerPage } from './pages'
-import { ProtectedRoute } from './routes/ProtectedRoute'
+import { LoggedGuard } from './routes/logged.guard'
 import { useUser } from './providers/UserProvider'
 import { Navbar } from './components'
 
-export const RouterManager = ({ io }) => {
+const RouterManager = ({ io }) => {
   const { user } = useUser()
 
   return (
@@ -13,7 +13,7 @@ export const RouterManager = ({ io }) => {
       <Routes>
         <Route path="/" element={<HomePage />} />
 
-        <Route element={<ProtectedRoute user={user} />}>
+        <Route element={<LoggedGuard user={user} />}>
           <Route path="/server" element={<ServerPage />} />
         </Route>
 
@@ -24,6 +24,8 @@ export const RouterManager = ({ io }) => {
     </>
   )
 }
+
+export default RouterManager
 
 /* <Route path="/tasks/:projectId" element={<TasksPage io={io} />} />
           <Route path="/tasks/:projectId/new-task" element={<NewTaskPage io={io} />} /> */

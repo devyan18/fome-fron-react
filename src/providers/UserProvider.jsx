@@ -3,7 +3,7 @@ import { getUserByToken } from '../services/user.service'
 
 const UserContext = createContext()
 
-export const UserProvider = ({ children }) => {
+const UserProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
 
   const findUser = async () => {
@@ -12,7 +12,8 @@ export const UserProvider = ({ children }) => {
     if (!token) return null
 
     getUserByToken({ token })
-      .then((user) => {
+      .then((res) => res.json())
+      .then(({ user }) => {
         if (!user) {
           localStorage.removeItem('token')
           localStorage.removeItem('user')
@@ -46,3 +47,4 @@ export const UserProvider = ({ children }) => {
 }
 
 export const useUser = () => useContext(UserContext)
+export default UserProvider

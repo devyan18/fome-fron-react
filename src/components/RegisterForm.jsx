@@ -1,7 +1,7 @@
-import { useForm } from '../hooks/useForm'
+import { useForm } from '../hooks'
 import { createUser } from '../services/user.service'
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const [values, handleInputChange, reset] = useForm({
     nickName: '_Maarin',
     email: 'epache17@gmail.com',
@@ -11,8 +11,8 @@ export const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    console.log(values)
-    const token = await createUser(values)
+    const res = await createUser(values)
+    const { token } = await res.json()
     if (!token) {
       reset()
       return
@@ -55,3 +55,5 @@ export const RegisterForm = () => {
     </form>
   )
 }
+
+export default RegisterForm

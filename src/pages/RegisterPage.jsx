@@ -1,9 +1,11 @@
-import { RegisterForm } from '../components/RegisterForm'
+import { RegisterForm } from '../components'
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
   return (
     <div>
       <RegisterForm />
     </div>
   )
 }
+
+export default RegisterPage
